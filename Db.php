@@ -110,7 +110,7 @@ class MigrationCreatePostsTable extends Migration
 {
   public function up() {
     Db::sql("CREATE TABLE posts (id INT(11) AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, body TEXT DEFAULT NULL)");
-    Db::sql("INSERT INTO table_name_with_typo (name, body) VALUES ('Test 1', 'Test 1 Post.'), ('Test 2', 'Test 2 Post.')");
+    Db::sql("INSERT INTO posts (name, body) VALUES ('Test 1', 'Test 1 Post.'), ('Test 2', 'Test 2 Post.')");
 
     return TRUE;
   }
