@@ -122,5 +122,23 @@ class MigrationCreatePostsTable extends Migration
   }
 }
 
+class MigrationAlterPostsAddAuthor extends Migration
+{
+  public function up() {
+    Db::sql("ALTER TABLE posts ADD author VARCHAR(255) NULL DEFAULT 'admin'");
+
+    return TRUE;
+  }
+
+  public function down() {
+    Db::sql("ALTER TABLE posts DROP COLUMN author");
+
+    return TRUE;
+  }
+}
+
 $migrationCreatePostsTable = new MigrationCreatePostsTable();
 Db::register_migration("version_1", $migrationCreatePostsTable);
+
+$migrationAlterPostsAddAuthor = new MigrationAlterPostsAddAuthor();
+Db::register_migration("version_2", $migrationAlterPostsAddAuthor);

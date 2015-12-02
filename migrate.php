@@ -2,4 +2,4 @@
 
 require_once("Db.php");
 
-Db::migrate("version_1");
+Db::migrate("version_2");

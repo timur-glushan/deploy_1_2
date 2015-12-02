@@ -69,10 +69,21 @@ class TestDbVersion extends TestCase
   }
 }
 
+class TestDbAlter extends TestCase
+{
+  public function run() {
+    $page = $this->get(SERVER_HOST_URL . SERVER_HOST_PATH_HOME);
+    $json = json_decode($page, TRUE);
+    return is_array($json) && count($json) > 0 && array_key_exists("author", $json[0]);
+  }
+}
+
 
 
 $testSuite = new TestSuite();
-$testDbVersion = new TestDbVersion();
-$testSuite->register("There should be 2 posts in JSON object printed at the index page", $testDbVersion);
+//$testDbVersion = new TestDbVersion();
+//$testSuite->register("There should be 2 posts in JSON object printed at the index page", $testDbVersion);
+$testDbAlter = new TestDbAlter();
+$testSuite->register("The posts JSON object should now have the 'author' field", $testDbAlter);
 //class TestBlank extends TestCase { public function run() { return TRUE; } } $testBlank = new TestBlank(); $testSuite->register("Blank", $testBlank);
 $testSuite->execute();
